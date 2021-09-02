@@ -2,7 +2,7 @@
 name = "pedidos-env"
 version = "0.1.0"
 description = ""
-authors = ["turquetti <gabrielaturquetti@gmail.com>"]
+authors = ["Dados Abertos de Feira <dadosabertosdefeira@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
