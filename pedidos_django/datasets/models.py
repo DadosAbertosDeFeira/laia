@@ -19,7 +19,7 @@ ESFERA_OPTIONS = (
 
 CATEGORY_OPTIONS = (
     ("camara_de_vereadores", "CÂMARA DE VEREADORES"),
-    ("licitações_prefeitura", "LICITAÇÕES PREFEITURA"),
+    ("licitacoes_prefeitura", "LICITAÇÕES PREFEITURA"),
     ("tcm_ba", "TCM-BA")
 )
 
