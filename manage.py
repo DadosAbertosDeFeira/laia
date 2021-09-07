@@ -1,7 +1,6 @@
 import os
 import sys
 
-
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pedidos_django.settings')
     try:
