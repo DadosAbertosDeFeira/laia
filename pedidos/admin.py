@@ -9,7 +9,7 @@ class PedidoModelAdmin(admin.ModelAdmin):
 
 
 class PublicPedidoModelAdmin(admin.ModelAdmin):
-    list_display = ("data_envio", "descricao", "orgao",)
+    list_display = ("data_envio", "titulo", "orgao",)
     list_filter = ("status",)
 
 
