@@ -18,13 +18,6 @@ ESFERA_OPTIONS = (
     ("federal", "FEDERAL"),
 )
 
-CATEGORY_OPTIONS = (
-    ("camara_de_vereadores", "CÂMARA DE VEREADORES"),
-    ("prefeitura", "PREFEITURA"),
-    ("tcm_ba", "TCM-BA")
-)
-
-
 class Pedido(models.Model):
     num_protocolo = models.CharField("Número de Protocolo", max_length=25, blank=True)
     data_envio = models.DateField("Data de envio", db_index=True)
@@ -34,7 +27,6 @@ class Pedido(models.Model):
     titulo = models.CharField("Título do Pedido", max_length=100)
     meio_de_contato = models.CharField("Meio de Contato", max_length=200)
     status = models.CharField("Status do Pedido", max_length=50, choices=STATUS_OPTIONS, blank=True)
-    # categoria = models.CharField("Categoria", max_length=50, choices=CATEGORY_OPTIONS, blank=True)
     historico = models.TextField("Historico", null=True, blank=True)
     texto = models.TextField("Texto")
     resposta = models.TextField("Resposta", null=True, blank=True)
@@ -45,5 +37,3 @@ class Pedido(models.Model):
 
     def __str__(self):
         return self.titulo
-
-    
