@@ -1,5 +1,6 @@
 from django.contrib import admin
 from public_admin.sites import PublicAdminSite, PublicApp
+
 from pedidos.models import Pedido
 
 
@@ -9,7 +10,11 @@ class PedidoModelAdmin(admin.ModelAdmin):
 
 
 class PublicPedidoModelAdmin(admin.ModelAdmin):
-    list_display = ("data_envio", "titulo", "orgao",)
+    list_display = (
+        "data_envio",
+        "titulo",
+        "orgao",
+    )
     list_filter = ("status",)
 
 
