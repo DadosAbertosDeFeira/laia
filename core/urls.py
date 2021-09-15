@@ -4,6 +4,6 @@ from pedidos.admin import public_admin
 
 
 urlpatterns = [
-    path("", public_admin.urls),
     path('admin/', admin.site.urls),
+    path("", public_admin.urls),
 ]
