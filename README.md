@@ -8,7 +8,7 @@ Para rodar o projeto Pedidos, você precisa instalar o [Poetry](https://python-p
 
 #### Carregue as variáveis de ambiente
 
-Para a aplicação funcionar, é necessário criarmos um arquivo `.env`, um arquivo de configuração que é individual por possuir dados sensíveis. Para configurar sua `.env`, busque pelo exemplo de configuração `.env.example` na raiz do projeto, faça uma cópia e deixe o arquivo com a extensão `.env`. 
+Para a aplicação funcionar, é necessário criarmos um arquivo `.env`, um arquivo de configuração que é individual por possuir dados sensíveis. Para configurar sua `.env`, busque pelo exemplo de configuração `.env.example` na raiz do projeto, faça uma cópia e deixe o arquivo com a extensão `.env`.
 
 #### Instale as dependências do projeto
 
@@ -35,4 +35,3 @@ python manage.py runserver
 ```bash
 python manage.py migrate
 ```
-
