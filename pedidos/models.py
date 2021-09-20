@@ -1,6 +1,5 @@
 from django.db import models
 
-
 STATUS_OPTIONS = (
     ("sem_resposta", "SEM RESPOSTA"),
     ("respondido_parcialmente", "RESPONDIDO PARCIALMENTE"),
@@ -42,6 +41,7 @@ class Pedido(models.Model):
     def __str__(self):
         return self.titulo
 
+
 class Orgao(models.Model):
     nome = models.CharField("Nome", max_length=100, blank=True)
     sigla = models.CharField("Sigla", max_length=50, blank=True)
@@ -49,7 +49,9 @@ class Orgao(models.Model):
     site = models.URLField("Site", max_length=50, blank=True)
     email = models.EmailField("E-mail", blank=True)
     telefone = models.CharField("Telefone", max_length=50, blank=True)
-    observacoes = models.TextField("Informações adicionais sobre o órgão", null=True, blank=True)
+    observacoes = models.TextField(
+        "Informações adicionais sobre o órgão", null=True, blank=True
+    )
 
     class Meta:
         verbose_name = "Órgão"

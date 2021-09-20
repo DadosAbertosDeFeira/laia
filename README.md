@@ -1,4 +1,7 @@
 # pedidos
+
+[![CI](https://github.com/DadosAbertosDeFeira/pedidos/actions/workflows/ci.yml/badge.svg)](https://github.com/DadosAbertosDeFeira/pedidos/actions/workflows/ci.yml)
+
 Cadastre e acompanhe o status dos seus pedidos de informação 📃
 
 ## Configurando seu ambiente

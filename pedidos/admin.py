@@ -1,6 +1,7 @@
 from django.contrib import admin
 from public_admin.sites import PublicAdminSite, PublicApp
-from pedidos.models import Pedido, Orgao
+
+from pedidos.models import Orgao, Pedido
 
 
 @admin.register(Pedido)
@@ -26,6 +27,7 @@ class PedidoPublicAdminSite(PublicAdminSite):
 @admin.register(Orgao)
 class OrgaoModelAdmin(admin.ModelAdmin):
     pass
+
 
 public_app = PublicApp("pedidos", models=("pedido",))
 public_admin = PedidoPublicAdminSite(public_apps=public_app)
