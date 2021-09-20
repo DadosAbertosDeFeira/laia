@@ -1,5 +1,6 @@
 from django.db import models
 
+
 STATUS_OPTIONS = (
     ("sem_resposta", "SEM RESPOSTA"),
     ("respondido_parcialmente", "RESPONDIDO PARCIALMENTE"),
@@ -24,8 +25,7 @@ class Pedido(models.Model):
     data_resposta = models.DateField(
         "Data de resposta", db_index=True, null=True, blank=True
     )
-    orgao = models.CharField("Órgão", max_length=50, blank=True)
-    esfera = models.CharField("Esfera", max_length=20, choices=ESFERA_OPTIONS)
+    orgao = models.ForeignKey("Orgao", on_delete=models.CASCADE)
     titulo = models.CharField("Título do Pedido", max_length=100)
     meio_de_contato = models.CharField("Meio de Contato", max_length=200)
     status = models.CharField(
@@ -41,3 +41,19 @@ class Pedido(models.Model):
 
     def __str__(self):
         return self.titulo
+
+class Orgao(models.Model):
+    nome = models.CharField("Nome", max_length=100, blank=True)
+    sigla = models.CharField("Sigla", max_length=50, blank=True)
+    esfera_orgao = models.CharField("Esfera", max_length=20, choices=ESFERA_OPTIONS)
+    site = models.URLField("Site", max_length=50, blank=True)
+    email = models.EmailField("E-mail", blank=True)
+    telefone = models.CharField("Telefone", max_length=50, blank=True)
+    observacoes = models.TextField("Informações adicionais sobre o órgão", null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Órgão"
+        verbose_name_plural = "Órgãos"
+
+    def __str__(self):
+        return self.sigla
