@@ -25,7 +25,7 @@ class Pedido(models.Model):
     data_resposta = models.DateField(
         "Data de resposta", db_index=True, null=True, blank=True
     )
-    orgao = models.ForeignKey("Orgao", on_delete=models.CASCADE)
+    orgao = models.ForeignKey("Orgao", on_delete=models.PROTECT)
     titulo = models.CharField("Título do Pedido", max_length=100)
     meio_de_contato = models.CharField("Meio de Contato", max_length=200)
     status = models.CharField(
