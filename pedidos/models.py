@@ -45,7 +45,7 @@ class Pedido(models.Model):
 class Orgao(models.Model):
     nome = models.CharField("Nome", max_length=100, blank=True)
     sigla = models.CharField("Sigla", max_length=50, blank=True)
-    esfera_orgao = models.CharField("Esfera", max_length=20, choices=ESFERA_OPTIONS)
+    esfera = models.CharField("Esfera", max_length=20, choices=ESFERA_OPTIONS)
     site = models.URLField("Site", max_length=50, blank=True)
     email = models.EmailField("E-mail", blank=True)
     telefone = models.CharField("Telefone", max_length=50, blank=True)

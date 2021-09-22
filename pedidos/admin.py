@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.contrib import admin
 from public_admin.sites import PublicAdminSite, PublicApp
 
@@ -6,16 +8,41 @@ from pedidos.models import Orgao, Pedido
 
 @admin.register(Pedido)
 class PedidoModelAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        "titulo",
+        "orgao",
+        "status",
+        "data_envio",
+        "data_resposta",
+        "dias_sem_resposta",
+    )
+
+    def dias_sem_resposta(self, pedido):
+        diferenca = date.today() - pedido.data_envio
+        return diferenca.days
 
 
 class PublicPedidoModelAdmin(admin.ModelAdmin):
     list_display = (
-        "data_envio",
         "titulo",
         "orgao",
+        "status",
+        "data_envio",
+        "data_resposta",
+        "dias_sem_resposta",
     )
-    list_filter = ("status",)
+    list_filter = (
+        "status",
+        "orgao__esfera",
+    )
+
+    def dias_sem_resposta(self, pedido):
+        if pedido.data_resposta == None:
+            diferenca = date.today() - pedido.data_envio
+        else:
+            diferenca = pedido.data_resposta - pedido.data_envio
+        
+        return diferenca.days
 
 
 class PedidoPublicAdminSite(PublicAdminSite):
