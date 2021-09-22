@@ -37,11 +37,11 @@ class PublicPedidoModelAdmin(admin.ModelAdmin):
     )
 
     def dias_sem_resposta(self, pedido):
-        if pedido.data_resposta == None:
+        if pedido.data_resposta is None:
             diferenca = date.today() - pedido.data_envio
         else:
             diferenca = pedido.data_resposta - pedido.data_envio
-        
+
         return diferenca.days
 
 
