@@ -6,22 +6,35 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('pedidos', '0004_denuncia'),
+        ("pedidos", "0004_denuncia"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='denuncia',
-            name='arquivo',
+            model_name="denuncia",
+            name="arquivo",
         ),
         migrations.AddField(
-            model_name='denuncia',
-            name='observacoes',
-            field=models.TextField(blank=True, null=True, verbose_name='Observações adicionais da denúncia'),
+            model_name="denuncia",
+            name="observacoes",
+            field=models.TextField(
+                blank=True, null=True, verbose_name="Observações adicionais da denúncia"
+            ),
         ),
         migrations.AddField(
-            model_name='denuncia',
-            name='status',
-            field=models.CharField(blank=True, choices=[('nova', 'NOVA'), ('em_andamento', 'EM ANDAMENTO'), ('deferida', 'DEFERIDA'), ('indeferida', 'INDEFERIDA'), ('arquivada', 'ARQUIVADA')], max_length=50, verbose_name='Status do Pedido'),
+            model_name="denuncia",
+            name="status",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("nova", "NOVA"),
+                    ("em_andamento", "EM ANDAMENTO"),
+                    ("deferida", "DEFERIDA"),
+                    ("indeferida", "INDEFERIDA"),
+                    ("arquivada", "ARQUIVADA"),
+                ],
+                max_length=50,
+                verbose_name="Status do Pedido",
+            ),
         ),
     ]
