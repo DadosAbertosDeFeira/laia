@@ -11,6 +11,14 @@ STATUS_OPTIONS = (
     ("pedido_nao_processado", "PEDIDO NÃO PROCESSADO"),
 )
 
+DENUNCIA_STATUS = (
+    ("nova", "NOVA"),
+    ("em_andamento", "EM ANDAMENTO"),
+    ("deferida", "DEFERIDA"),
+    ("indeferida", "INDEFERIDA"),
+    ("arquivada", "ARQUIVADA"),
+)
+
 ESFERA_OPTIONS = (
     ("municipal", "MUNICIPAL"),
     ("estadual", "ESTADUAL"),
@@ -59,3 +67,22 @@ class Orgao(models.Model):
 
     def __str__(self):
         return self.sigla
+
+
+class Denuncia(models.Model):
+    pedido = models.ForeignKey("Pedido", on_delete=models.PROTECT)
+    data_criacao = models.DateField("Data de criação", db_index=True)
+    data_conclusao = models.DateField(
+        "Data de conclusão", db_index=True, null=True, blank=True
+    )
+    orgao = models.ForeignKey("Orgao", on_delete=models.PROTECT)
+    meio_contato = models.CharField("Meio de Contato", max_length=200)
+    status = models.CharField(
+        "Status", max_length=50, choices=DENUNCIA_STATUS, blank=True
+    )
+    texto = models.TextField("Texto")
+    historico = models.TextField("Historico", null=True, blank=True)
+    resposta = models.TextField("Resposta", null=True, blank=True)
+    observacoes = models.TextField(
+        "Observações adicionais da denúncia", null=True, blank=True
+    )
