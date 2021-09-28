@@ -75,6 +75,7 @@ class Denuncia(models.Model):
     data_conclusao = models.DateField(
         "Data de conclusão", db_index=True, null=True, blank=True
     )
+    titulo = models.CharField("Título", max_length=100)
     orgao = models.ForeignKey("Orgao", on_delete=models.PROTECT)
     meio_contato = models.CharField("Meio de Contato", max_length=200)
     status = models.CharField(
@@ -86,3 +87,10 @@ class Denuncia(models.Model):
     observacoes = models.TextField(
         "Observações adicionais da denúncia", null=True, blank=True
     )
+
+    class Meta:
+        verbose_name = "Denúncia"
+        verbose_name_plural = "Denúncias"
+
+    def __str__(self):
+        return f"{self.titulo} ({self.pedido.orgao} | {self.orgao})"

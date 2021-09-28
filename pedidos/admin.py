@@ -54,7 +54,23 @@ class OrgaoModelAdmin(admin.ModelAdmin):
 
 @admin.register(Denuncia)
 class DenunciaModelAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        "titulo",
+        "orgao",
+        "pedido_e_orgao",
+        "status",
+        "data_criacao",
+        "data_conclusao",
+    )
+    list_filter = (
+        "status",
+        "orgao__esfera",
+    )
+
+    def pedido_e_orgao(self, obj):
+        return f"{obj.pedido.titulo} ({obj.pedido.orgao.sigla})"
+
+    pedido_e_orgao.short_description = "Pedido"
 
 
 public_app = PublicApp("pedidos", models=("pedido", "denuncia"))
