@@ -53,6 +53,7 @@ class DenunciaModelAdmin(admin.ModelAdmin):
     pass
 
 
-public_app = PublicApp("pedidos", models=("pedido",))
+public_app = PublicApp("pedidos", models=("pedido", "denuncia"))
 public_admin = PedidoPublicAdminSite(public_apps=public_app)
 public_admin.register(Pedido, PublicPedidoModelAdmin)
+public_admin.register(Denuncia, DenunciaModelAdmin)
