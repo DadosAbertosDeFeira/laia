@@ -1,21 +1,35 @@
+from datetime import date
+
 from django.contrib import admin
 from public_admin.sites import PublicAdminSite, PublicApp
 
-from pedidos.models import Orgao, Pedido
+from pedidos.models import Denuncia, Orgao, Pedido
 
 
-@admin.register(Pedido)
-class PedidoModelAdmin(admin.ModelAdmin):
-    pass
-
-
-class PublicPedidoModelAdmin(admin.ModelAdmin):
+class PedidoMixin(admin.ModelAdmin):
     list_display = (
-        "data_envio",
         "titulo",
         "orgao",
+        "status",
+        "data_envio",
+        "data_resposta",
+        "dias_sem_resposta",
     )
-    list_filter = ("status",)
+
+    def dias_sem_resposta(self, pedido):
+        if pedido.data_resposta is None:
+            diferenca = date.today() - pedido.data_envio
+        else:
+            diferenca = pedido.data_resposta - pedido.data_envio
+
+        return diferenca.days
+
+
+class PublicPedidoModelAdmin(PedidoMixin, admin.ModelAdmin):
+    list_filter = (
+        "status",
+        "orgao__esfera",
+    )
 
 
 class PedidoPublicAdminSite(PublicAdminSite):
@@ -24,11 +38,22 @@ class PedidoPublicAdminSite(PublicAdminSite):
     index_title = "Dashboard"
 
 
+@admin.register(Pedido)
+class PedidoModelAdmin(PedidoMixin, admin.ModelAdmin):
+    pass
+
+
 @admin.register(Orgao)
 class OrgaoModelAdmin(admin.ModelAdmin):
     pass
 
 
-public_app = PublicApp("pedidos", models=("pedido",))
+@admin.register(Denuncia)
+class DenunciaModelAdmin(admin.ModelAdmin):
+    pass
+
+
+public_app = PublicApp("pedidos", models=("pedido", "denuncia"))
 public_admin = PedidoPublicAdminSite(public_apps=public_app)
 public_admin.register(Pedido, PublicPedidoModelAdmin)
+public_admin.register(Denuncia, DenunciaModelAdmin)
