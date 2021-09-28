@@ -1,5 +1,6 @@
 from datetime import date
 
+from django.conf import settings
 from django.contrib import admin
 from public_admin.sites import PublicAdminSite, PublicApp
 
@@ -33,8 +34,11 @@ class PublicPedidoModelAdmin(PedidoMixin, admin.ModelAdmin):
 
 
 class PedidoPublicAdminSite(PublicAdminSite):
-    site_title = "Pedidos de Informação"
-    site_header = "Pedidos de Informação"
+    organization = (
+        f" - {settings.ORGANIZATION_NAME}" if settings.ORGANIZATION_NAME else ""
+    )
+    site_title = f"Pedidos de Informação {organization}"
+    site_header = f"Pedidos de Informação {organization}"
     index_title = "Dashboard"
 
 
@@ -50,7 +54,23 @@ class OrgaoModelAdmin(admin.ModelAdmin):
 
 @admin.register(Denuncia)
 class DenunciaModelAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        "titulo",
+        "orgao",
+        "pedido_e_orgao",
+        "status",
+        "data_criacao",
+        "data_conclusao",
+    )
+    list_filter = (
+        "status",
+        "orgao__esfera",
+    )
+
+    def pedido_e_orgao(self, obj):
+        return f"{obj.pedido.titulo} ({obj.pedido.orgao.sigla})"
+
+    pedido_e_orgao.short_description = "Pedido"
 
 
 public_app = PublicApp("pedidos", models=("pedido", "denuncia"))
