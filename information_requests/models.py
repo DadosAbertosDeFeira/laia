@@ -53,8 +53,8 @@ class InformationRequest(models.Model):
 
 
 class PublicAgency(models.Model):
-    name = models.CharField("Nome", max_length=100, blank=True)
-    initials = models.CharField("Sigla", max_length=50, blank=True)
+    name = models.CharField("Nome", max_length=100)
+    initials = models.CharField("Sigla", max_length=50)
     sphere = models.CharField("Esfera", max_length=20, choices=SPHERE_OPTIONS)
     website = models.URLField("Site", max_length=50, blank=True)
     email = models.EmailField("E-mail", blank=True)

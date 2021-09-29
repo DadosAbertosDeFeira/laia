@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib import admin
 from public_admin.sites import PublicAdminSite, PublicApp
 
-from pedidos.models import Complaint, InformationRequest, PublicAgency
+from information_requests.models import Complaint, InformationRequest, PublicAgency
 
 
 class InformationRequestMixin(admin.ModelAdmin):
@@ -24,6 +24,8 @@ class InformationRequestMixin(admin.ModelAdmin):
             difference = information_request.replied_at - information_request.sent_at
 
         return difference.days
+
+    days_without_reply.short_description = "Dias sem resposta"
 
 
 class PublicRequestModelAdmin(InformationRequestMixin, admin.ModelAdmin):
@@ -74,7 +76,9 @@ class ComplaintModelAdmin(admin.ModelAdmin):
     request_and_body.short_description = "Pedido"
 
 
-public_app = PublicApp("pedidos", models=("informationrequest", "complaint"))
+public_app = PublicApp(
+    "information_requests", models=("informationrequest", "complaint")
+)
 public_admin = RequestPublicAdminSite(public_apps=public_app)
 public_admin.register(InformationRequest, PublicRequestModelAdmin)
 public_admin.register(Complaint, ComplaintModelAdmin)
