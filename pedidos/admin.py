@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib import admin
 from public_admin.sites import PublicAdminSite, PublicApp
 
-from pedidos.models import Complaint, Body, Request
+from pedidos.models import Body, Complaint, Request
 
 
 class RequestMixin(admin.ModelAdmin):
