@@ -4,36 +4,36 @@ from django.conf import settings
 from django.contrib import admin
 from public_admin.sites import PublicAdminSite, PublicApp
 
-from pedidos.models import Denuncia, Orgao, Pedido
+from pedidos.models import Complaint, Body, Request
 
 
-class PedidoMixin(admin.ModelAdmin):
+class RequestMixin(admin.ModelAdmin):
     list_display = (
-        "titulo",
-        "orgao",
+        "title",
+        "body",
         "status",
-        "data_envio",
-        "data_resposta",
-        "dias_sem_resposta",
+        "sent_at",
+        "replied_at",
+        "days_without_reply",
     )
 
-    def dias_sem_resposta(self, pedido):
-        if pedido.data_resposta is None:
-            diferenca = date.today() - pedido.data_envio
+    def days_without_reply(self, request):
+        if request.replied_at is None:
+            difference = date.today() - request.sent_at
         else:
-            diferenca = pedido.data_resposta - pedido.data_envio
+            difference = request.replied_at - request.sent_at
 
-        return diferenca.days
+        return difference.days
 
 
-class PublicPedidoModelAdmin(PedidoMixin, admin.ModelAdmin):
+class PublicRequestModelAdmin(RequestMixin, admin.ModelAdmin):
     list_filter = (
         "status",
-        "orgao__esfera",
+        "body__sphere",
     )
 
 
-class PedidoPublicAdminSite(PublicAdminSite):
+class RequestPublicAdminSite(PublicAdminSite):
     organization = (
         f" - {settings.ORGANIZATION_NAME}" if settings.ORGANIZATION_NAME else ""
     )
@@ -42,38 +42,38 @@ class PedidoPublicAdminSite(PublicAdminSite):
     index_title = "Dashboard"
 
 
-@admin.register(Pedido)
-class PedidoModelAdmin(PedidoMixin, admin.ModelAdmin):
+@admin.register(Request)
+class RequestModelAdmin(RequestMixin, admin.ModelAdmin):
     pass
 
 
-@admin.register(Orgao)
-class OrgaoModelAdmin(admin.ModelAdmin):
+@admin.register(Body)
+class BodyModelAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Denuncia)
-class DenunciaModelAdmin(admin.ModelAdmin):
+@admin.register(Complaint)
+class ComplaintModelAdmin(admin.ModelAdmin):
     list_display = (
-        "titulo",
-        "orgao",
-        "pedido_e_orgao",
+        "title",
+        "body",
+        "request_and_body",
         "status",
-        "data_criacao",
-        "data_conclusao",
+        "created_at",
+        "finished_at",
     )
     list_filter = (
         "status",
-        "orgao__esfera",
+        "body__sphere",
     )
 
-    def pedido_e_orgao(self, obj):
-        return f"{obj.pedido.titulo} ({obj.pedido.orgao.sigla})"
+    def request_and_body(self, obj):
+        return f"{obj.request.title} ({obj.request.body.initials})"
 
-    pedido_e_orgao.short_description = "Pedido"
+    request_and_body.short_description = "Pedido"
 
 
-public_app = PublicApp("pedidos", models=("pedido", "denuncia"))
-public_admin = PedidoPublicAdminSite(public_apps=public_app)
-public_admin.register(Pedido, PublicPedidoModelAdmin)
-public_admin.register(Denuncia, DenunciaModelAdmin)
+public_app = PublicApp("pedidos", models=("request", "complaint"))
+public_admin = RequestPublicAdminSite(public_apps=public_app)
+public_admin.register(Request, PublicRequestModelAdmin)
+public_admin.register(Complaint, ComplaintModelAdmin)

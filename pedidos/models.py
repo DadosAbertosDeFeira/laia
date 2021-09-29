@@ -11,7 +11,7 @@ STATUS_OPTIONS = (
     ("pedido_nao_processado", "PEDIDO NÃO PROCESSADO"),
 )
 
-DENUNCIA_STATUS = (
+COMPLAINT_STATUS = (
     ("nova", "NOVA"),
     ("em_andamento", "EM ANDAMENTO"),
     ("deferida", "DEFERIDA"),
@@ -19,45 +19,45 @@ DENUNCIA_STATUS = (
     ("arquivada", "ARQUIVADA"),
 )
 
-ESFERA_OPTIONS = (
+SPHERE_OPTIONS = (
     ("municipal", "MUNICIPAL"),
     ("estadual", "ESTADUAL"),
     ("federal", "FEDERAL"),
 )
 
 
-class Pedido(models.Model):
-    num_protocolo = models.CharField("Número de Protocolo", max_length=25, blank=True)
-    data_envio = models.DateField("Data de envio", db_index=True)
-    data_resposta = models.DateField(
+class Request(models.Model):
+    num_protocol = models.CharField("Número de Protocolo", max_length=25, blank=True)
+    sent_at = models.DateField("Data de envio", db_index=True)
+    replied_at = models.DateField(
         "Data de resposta", db_index=True, null=True, blank=True
     )
-    orgao = models.ForeignKey("Orgao", on_delete=models.PROTECT)
-    titulo = models.CharField("Título do Pedido", max_length=100)
-    meio_de_contato = models.CharField("Meio de Contato", max_length=200)
+    body = models.ForeignKey("Body", on_delete=models.PROTECT)
+    title = models.CharField("Título do Pedido", max_length=100)
+    means_of_contact = models.CharField("Meio de Contato", max_length=200)
     status = models.CharField(
         "Status do Pedido", max_length=50, choices=STATUS_OPTIONS, blank=True
     )
-    historico = models.TextField("Historico", null=True, blank=True)
-    texto = models.TextField("Texto")
-    resposta = models.TextField("Resposta", null=True, blank=True)
+    historic = models.TextField("Historico", null=True, blank=True)
+    text = models.TextField("Texto")
+    reply = models.TextField("Resposta", null=True, blank=True)
 
     class Meta:
         verbose_name = "Pedido"
         verbose_name_plural = "Pedidos"
 
     def __str__(self):
-        return self.titulo
+        return self.title
 
 
-class Orgao(models.Model):
-    nome = models.CharField("Nome", max_length=100, blank=True)
-    sigla = models.CharField("Sigla", max_length=50, blank=True)
-    esfera = models.CharField("Esfera", max_length=20, choices=ESFERA_OPTIONS)
-    site = models.URLField("Site", max_length=50, blank=True)
+class Body(models.Model):
+    name = models.CharField("Nome", max_length=100, blank=True)
+    initials = models.CharField("Sigla", max_length=50, blank=True)
+    sphere = models.CharField("Esfera", max_length=20, choices=SPHERE_OPTIONS)
+    website = models.URLField("Site", max_length=50, blank=True)
     email = models.EmailField("E-mail", blank=True)
-    telefone = models.CharField("Telefone", max_length=50, blank=True)
-    observacoes = models.TextField(
+    telephone_number = models.CharField("Telefone", max_length=50, blank=True)
+    extra_information = models.TextField(
         "Informações adicionais sobre o órgão", null=True, blank=True
     )
 
@@ -66,25 +66,25 @@ class Orgao(models.Model):
         verbose_name_plural = "Órgãos"
 
     def __str__(self):
-        return self.sigla
+        return self.initials
 
 
-class Denuncia(models.Model):
-    pedido = models.ForeignKey("Pedido", on_delete=models.PROTECT)
-    data_criacao = models.DateField("Data de criação", db_index=True)
-    data_conclusao = models.DateField(
+class Complaint(models.Model):
+    request = models.ForeignKey("Request", on_delete=models.PROTECT)
+    created_at = models.DateField("Data de criação", db_index=True)
+    finished_at = models.DateField(
         "Data de conclusão", db_index=True, null=True, blank=True
     )
-    titulo = models.CharField("Título", max_length=100)
-    orgao = models.ForeignKey("Orgao", on_delete=models.PROTECT)
-    meio_contato = models.CharField("Meio de Contato", max_length=200)
+    title = models.CharField("Título", max_length=100)
+    body = models.ForeignKey("Body", on_delete=models.PROTECT)
+    means_of_contact = models.CharField("Meio de Contato", max_length=200)
     status = models.CharField(
-        "Status", max_length=50, choices=DENUNCIA_STATUS, blank=True
+        "Status", max_length=50, choices=COMPLAINT_STATUS, blank=True
     )
-    texto = models.TextField("Texto")
-    historico = models.TextField("Historico", null=True, blank=True)
-    resposta = models.TextField("Resposta", null=True, blank=True)
-    observacoes = models.TextField(
+    text = models.TextField("Texto")
+    historic = models.TextField("Historico", null=True, blank=True)
+    reply = models.TextField("Resposta", null=True, blank=True)
+    extra_information = models.TextField(
         "Observações adicionais da denúncia", null=True, blank=True
     )
 
@@ -93,4 +93,4 @@ class Denuncia(models.Model):
         verbose_name_plural = "Denúncias"
 
     def __str__(self):
-        return f"{self.titulo} ({self.pedido.orgao} | {self.orgao})"
+        return f"{self.title} ({self.request.body} | {self.body})"
