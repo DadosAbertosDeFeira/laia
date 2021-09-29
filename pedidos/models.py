@@ -26,19 +26,21 @@ SPHERE_OPTIONS = (
 )
 
 
-class Request(models.Model):
+class InformationRequest(models.Model):
     num_protocol = models.CharField("Número de Protocolo", max_length=25, blank=True)
     sent_at = models.DateField("Data de envio", db_index=True)
     replied_at = models.DateField(
         "Data de resposta", db_index=True, null=True, blank=True
     )
-    body = models.ForeignKey("Body", on_delete=models.PROTECT)
+    public_agency = models.ForeignKey(
+        "PublicAgency", verbose_name="Órgão", on_delete=models.PROTECT
+    )
     title = models.CharField("Título do Pedido", max_length=100)
-    means_of_contact = models.CharField("Meio de Contato", max_length=200)
+    contact = models.CharField("Meio de Contato", max_length=200)
     status = models.CharField(
         "Status do Pedido", max_length=50, choices=STATUS_OPTIONS, blank=True
     )
-    historic = models.TextField("Historico", null=True, blank=True)
+    historic = models.TextField("Histórico", null=True, blank=True)
     text = models.TextField("Texto")
     reply = models.TextField("Resposta", null=True, blank=True)
 
@@ -50,7 +52,7 @@ class Request(models.Model):
         return self.title
 
 
-class Body(models.Model):
+class PublicAgency(models.Model):
     name = models.CharField("Nome", max_length=100, blank=True)
     initials = models.CharField("Sigla", max_length=50, blank=True)
     sphere = models.CharField("Esfera", max_length=20, choices=SPHERE_OPTIONS)
@@ -70,19 +72,23 @@ class Body(models.Model):
 
 
 class Complaint(models.Model):
-    request = models.ForeignKey("Request", on_delete=models.PROTECT)
+    information_request = models.ForeignKey(
+        "InformationRequest", verbose_name="Pedido", on_delete=models.PROTECT
+    )
     created_at = models.DateField("Data de criação", db_index=True)
     finished_at = models.DateField(
         "Data de conclusão", db_index=True, null=True, blank=True
     )
     title = models.CharField("Título", max_length=100)
-    body = models.ForeignKey("Body", on_delete=models.PROTECT)
-    means_of_contact = models.CharField("Meio de Contato", max_length=200)
+    public_agency = models.ForeignKey(
+        "PublicAgency", verbose_name="Órgão", on_delete=models.PROTECT
+    )
+    contact = models.CharField("Meio de Contato", max_length=200)
     status = models.CharField(
         "Status", max_length=50, choices=COMPLAINT_STATUS, blank=True
     )
     text = models.TextField("Texto")
-    historic = models.TextField("Historico", null=True, blank=True)
+    historic = models.TextField("Histórico", null=True, blank=True)
     reply = models.TextField("Resposta", null=True, blank=True)
     extra_information = models.TextField(
         "Observações adicionais da denúncia", null=True, blank=True
@@ -93,4 +99,7 @@ class Complaint(models.Model):
         verbose_name_plural = "Denúncias"
 
     def __str__(self):
-        return f"{self.title} ({self.request.body} | {self.body})"
+        public_agency = (
+            f"{self.information_request.public_agency} | {self.public_agency}"
+        )
+        return f"{self.title} ({public_agency})"
