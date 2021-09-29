@@ -1,12 +1,12 @@
-# pedidos
+# Laiá
 
 [![CI](https://github.com/DadosAbertosDeFeira/pedidos/actions/workflows/ci.yml/badge.svg)](https://github.com/DadosAbertosDeFeira/pedidos/actions/workflows/ci.yml)
 
-Cadastre e acompanhe o status dos seus pedidos de informação 📃
+Cadastre e acompanhe o status dos seus pedidos de informação 📃✨
 
 ## Configurando seu ambiente
 
-Para rodar o projeto Pedidos, você precisa instalar o [Poetry](https://python-poetry.org/docs/master/#installation),
+Para rodar o projeto Laiá, você precisa instalar o [Poetry](https://python-poetry.org/docs/master/#installation),
 para conseguir instalar automaticamente todas as dependências do projeto.
 
 ### Instale as dependências do projeto
