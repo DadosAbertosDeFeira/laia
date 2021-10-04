@@ -68,7 +68,7 @@ class PublicAgency(models.Model):
         verbose_name_plural = "Órgãos"
 
     def __str__(self):
-        return self.initials
+        return self.initials or self.name
 
 
 class Complaint(models.Model):
