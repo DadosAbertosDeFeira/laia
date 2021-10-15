@@ -82,3 +82,4 @@ public_app = PublicApp(
 public_admin = RequestPublicAdminSite(public_apps=public_app)
 public_admin.register(InformationRequest, PublicRequestModelAdmin)
 public_admin.register(Complaint, ComplaintModelAdmin)
+admin.site.disable_action("delete_selected")
