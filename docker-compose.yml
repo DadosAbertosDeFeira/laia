@@ -1,0 +1,24 @@
+version: "3.4"
+
+services:
+    db:
+        image: library/postgres:11-alpine
+        environment:
+            POSTGRES_DB: laia
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+        volumes:
+            - ./db:/var/lib/postgresql
+
+    web:
+        build: .
+        command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+        volumes:
+            - .:/code
+        ports:
+            - "8000:8000"
+        environment:
+            DATABASE_HOST: db
+        env_file: .env
+        depends_on:
+            - db
