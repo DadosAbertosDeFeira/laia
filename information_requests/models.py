@@ -83,7 +83,9 @@ class Complaint(CreatedUpdatedAt, models.Model):
     information_request = models.ForeignKey(
         "InformationRequest", verbose_name="Pedido", on_delete=models.PROTECT
     )
-    complaint_created_at = models.DateField("Data de criação da denúncia", db_index=True)
+    complaint_created_at = models.DateField(
+        "Data de criação da denúncia", db_index=True
+    )
     finished_at = models.DateField(
         "Data de conclusão", db_index=True, null=True, blank=True
     )
