@@ -4,8 +4,6 @@ import dj_database_url
 import django_on_heroku
 from decouple import config
 
-django_on_heroku.settings(locals())
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config("SECRET_KEY")
@@ -94,3 +92,5 @@ STATIC_URL = "/static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ORGANIZATION_NAME = config("ORGANIZATION_NAME")
+
+django_on_heroku.settings(locals())
