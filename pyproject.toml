@@ -5,7 +5,7 @@ description = ""
 authors = ["Dados Abertos de Feira <dadosabertosdefeira@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8.1"
+python = "3.8.1"
 Django = "^3.2.6"
 python-decouple = "^3.4"
 django-public-admin = "^0.0.5"
