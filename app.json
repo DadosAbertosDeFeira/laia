@@ -1,20 +1,28 @@
 {
-    "name": "Laiá",
-    "description": "Seus pedidos de informação, órgãos e denúncias em um só lugar",
-    "repository": "https://github.com/DadosAbertosDeFeira/laia",
-    "logo": "",
-    "keywords": ["lei de acesso à informação", "python", "django", "tecnologias cívicas"],
-    "addons": [
-        {
-          "plan": "heroku-postgresql",
-          "options": {
-            "version": "13"
-          }
-        }
-    ],
-    "buildpacks": [
-      {
-        "url": "https://github.com/moneymeets/python-poetry-buildpack.git"
-      }
-    ]
+  "name": "laia",
+  "description": "Seus pedidos de informação e denúncias em um só lugar",
+  "scripts": {},
+  "env": {
+    "DISABLE_COLLECTSTATIC": "1",
+    "ORGANIZATION_NAME": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/moneymeets/python-poetry-buildpack"
+    },
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "stack": "heroku-20"
 }
