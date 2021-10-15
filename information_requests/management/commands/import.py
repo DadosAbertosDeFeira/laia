@@ -23,7 +23,7 @@ class Command(BaseCommand):
                     sphere=row["Esfera"].lower(),
                 )
 
-                InformationRequest.objects.get_or_create(
+                information_request, created = InformationRequest.objects.get_or_create(
                     sent_at=parse(row["Data de envio"]),
                     replied_at=parse(row["Data de resposta"])
                     if row["Data de resposta"]
@@ -36,7 +36,11 @@ class Command(BaseCommand):
                     text=row["Texto"],
                     reply=row["Resposta"],
                 )
-                count += 1
+
+                if created:
+                    count += 1
+                else:
+                    count
 
             self.stdout.write(
                 self.style.SUCCESS(
