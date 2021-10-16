@@ -38,10 +38,12 @@ jobs:
         DJANGO_SETTINGS_MODULE: "core.settings"
         DATABASE_URL: "postgres://postgres:postgres@localhost:5432/laia"
         SECRET_KEY: "this-is-a-secret"
+        ORGANIZATION_NAME: "Informação para todos"
       run: python manage.py makemigrations --check
     - name: Run tests
       env:
         DJANGO_SETTINGS_MODULE: "core.settings"
         DATABASE_URL: "postgres://postgres:postgres@localhost:5432/laia"
         SECRET_KEY: "this-is-a-secret"
+        ORGANIZATION_NAME: "Informação para todos"
       run: pytest
