@@ -26,7 +26,7 @@ SPHERE_OPTIONS = (
 )
 
 
-class CreatedUpdatedAt(models.Model):
+class CreatedUpdatedAtMixin(models.Model):
     created_at = models.DateTimeField("Criado em", auto_now_add=True)
     updated_at = models.DateTimeField("Atualizado em", auto_now=True)
 
@@ -34,7 +34,7 @@ class CreatedUpdatedAt(models.Model):
         abstract = True
 
 
-class InformationRequest(CreatedUpdatedAt, models.Model):
+class InformationRequest(CreatedUpdatedAtMixin, models.Model):
     num_protocol = models.CharField("Número de Protocolo", max_length=25, blank=True)
     sent_at = models.DateField("Data de envio", db_index=True)
     replied_at = models.DateField(
@@ -60,7 +60,7 @@ class InformationRequest(CreatedUpdatedAt, models.Model):
         return self.title
 
 
-class PublicAgency(CreatedUpdatedAt, models.Model):
+class PublicAgency(CreatedUpdatedAtMixin, models.Model):
     name = models.CharField("Nome", max_length=100)
     initials = models.CharField("Sigla", max_length=50)
     sphere = models.CharField("Esfera", max_length=20, choices=SPHERE_OPTIONS)
@@ -79,13 +79,11 @@ class PublicAgency(CreatedUpdatedAt, models.Model):
         return self.initials
 
 
-class Complaint(CreatedUpdatedAt, models.Model):
+class Complaint(CreatedUpdatedAtMixin, models.Model):
     information_request = models.ForeignKey(
         "InformationRequest", verbose_name="Pedido", on_delete=models.PROTECT
     )
-    complaint_created_at = models.DateField(
-        "Data de criação da denúncia", db_index=True
-    )
+    registered_at = models.DateField("Data de registro da denúncia", db_index=True)
     finished_at = models.DateField(
         "Data de conclusão", db_index=True, null=True, blank=True
     )
