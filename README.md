@@ -29,13 +29,7 @@ poetry install
 docker-compose up --build
 ```
 
-Para aplicar as _migrations, execute:
-
-```bash
-make migrate
-```
-
-Para aplicar as _migrations, execute:
+Para aplicar as migrations, execute:
 
 ```bash
 make migrate
