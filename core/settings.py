@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import dj_database_url
 from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,7 +9,9 @@ SECRET_KEY = config("SECRET_KEY")
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config(
+    "ALLOWED_HOSTS", default=["localhost", "127.0.0.1", "[::1]", "0.0.0.0"], cast=list
+)
 
 INSTALLED_APPS = [
     "public_admin",
@@ -51,11 +54,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
+default_db = "postgres://postgres:postgres@db:5432/laia"
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": dj_database_url.config(
+        default=default_db, conn_max_age=600, ssl_require=False
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -73,7 +76,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "pt-br"
 
 TIME_ZONE = "America/Fortaleza"
 

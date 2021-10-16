@@ -1,0 +1,9 @@
+# ignora tudo
+**
+
+# adiciona apenas os arquivos permitidos
+!core
+!information_requests
+!manage.py
+!poetry.lock
+!pyproject.toml
