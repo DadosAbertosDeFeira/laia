@@ -3,7 +3,7 @@ name: CI
 on: [ push, pull_request ]
 
 jobs:
-  linter:
+  tests:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -37,9 +37,11 @@ jobs:
       env:
         DJANGO_SETTINGS_MODULE: "core.settings"
         DATABASE_URL: "postgres://postgres:postgres@localhost:5432/laia"
+        SECRET_KEY: "this-is-a-secret"
       run: python manage.py makemigrations --check
     - name: Run tests
       env:
         DJANGO_SETTINGS_MODULE: "core.settings"
         DATABASE_URL: "postgres://postgres:postgres@localhost:5432/laia"
+        SECRET_KEY: "this-is-a-secret"
       run: pytest
