@@ -11,7 +11,6 @@ class Command(BaseCommand):
         parser.add_argument("csvfile")
 
     def handle(self, *args, **options):
-
         count = 0
         with open(options.get("csvfile")) as csv_file:
             reader = csv.DictReader(csv_file)
@@ -39,8 +38,6 @@ class Command(BaseCommand):
 
                 if created:
                     count += 1
-                else:
-                    count
 
             self.stdout.write(
                 self.style.SUCCESS(
