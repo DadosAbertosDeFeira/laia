@@ -43,6 +43,11 @@ make migrate
 
 Outros atalhos podem ser vistos em nosso [Makefile](Makefile).
 
+### Rodando os testes
+
+Você pode executar os testes no ambiente virtual criado pelo Poetry
+com `pytest` ou rodando `make tests` para executar os testes dentro do container.
+
 ### Configure o pre-commit
 
 Instale o pre-commit localmente rodando `pre-commit install`. Dessa forma,
