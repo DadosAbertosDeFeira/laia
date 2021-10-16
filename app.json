@@ -3,8 +3,12 @@
   "description": "Seus pedidos de informação e denúncias em um só lugar",
   "scripts": {},
   "env": {
+    "ALLOWED_HOSTS": "0.0.0.0,NOME_DO_SEU_APP_AQUI.herokuapp.com",
     "DISABLE_COLLECTSTATIC": "1",
     "ORGANIZATION_NAME": {
+      "required": true
+    },
+    "SECRET_KEY": {
       "required": true
     }
   },
