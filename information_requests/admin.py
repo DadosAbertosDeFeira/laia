@@ -1,5 +1,3 @@
-from datetime import date
-
 from django.conf import settings
 from django.contrib import admin
 from public_admin.sites import PublicAdminSite, PublicApp
@@ -18,12 +16,7 @@ class InformationRequestMixin(admin.ModelAdmin):
     )
 
     def days_without_reply(self, information_request):
-        if information_request.replied_at is None:
-            difference = date.today() - information_request.sent_at
-        else:
-            difference = information_request.replied_at - information_request.sent_at
-
-        return difference.days
+        return information_request.days_without_reply
 
     days_without_reply.short_description = "Dias sem resposta"
 
