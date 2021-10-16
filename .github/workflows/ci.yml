@@ -38,3 +38,8 @@ jobs:
         DJANGO_SETTINGS_MODULE: "core.settings"
         DATABASE_URL: "postgres://postgres:postgres@localhost:5432/laia"
       run: python manage.py makemigrations --check
+    - name: Run tests
+      env:
+        DJANGO_SETTINGS_MODULE: "core.settings"
+        DATABASE_URL: "postgres://postgres:postgres@localhost:5432/laia"
+      run: pytest
