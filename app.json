@@ -9,7 +9,7 @@
       "required": true
     },
     "SECRET_KEY": {
-      "required": true
+      "generator": "secret"
     }
   },
   "formation": {
