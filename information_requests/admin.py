@@ -82,4 +82,8 @@ public_app = PublicApp(
 public_admin = RequestPublicAdminSite(public_apps=public_app)
 public_admin.register(InformationRequest, PublicRequestModelAdmin)
 public_admin.register(Complaint, ComplaintModelAdmin)
+organization = f" - {settings.ORGANIZATION_NAME}" if settings.ORGANIZATION_NAME else ""
+admin.site.site_title = f"Administração {organization}"
+admin.site.site_header = f"Administração {organization}"
+admin.site.index_title = "Dashboard"
 admin.site.disable_action("delete_selected")
