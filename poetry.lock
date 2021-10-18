@@ -315,7 +315,7 @@ testing = ["django", "django-configurations (>=2.0)"]
 name = "python-dateutil"
 version = "2.8.2"
 description = "Extensions to the standard Python datetime module"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 
@@ -411,7 +411,7 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "3.8.12"
-content-hash = "43c148a221c66e726b9e2c8bad9a5f312e3fad1990c82d0f4ba3c27f1249b9ec"
+content-hash = "35cc7af940eb6294d13b5b9ffe4c368d8061bff16de92734e306726a588e1878"
 
 [metadata.files]
 asgiref = [
