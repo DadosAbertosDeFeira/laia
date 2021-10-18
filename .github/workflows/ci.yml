@@ -3,8 +3,21 @@ name: CI
 on: [ push, pull_request ]
 
 jobs:
-  linter:
+  tests:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: library/postgres:11-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: laia
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
@@ -20,3 +33,17 @@ jobs:
         poetry install -vv
     - name: Run pre-commit
       run: pre-commit run --all
+    - name: Check migrations
+      env:
+        DJANGO_SETTINGS_MODULE: "core.settings"
+        DATABASE_URL: "postgres://postgres:postgres@localhost:5432/laia"
+        SECRET_KEY: "this-is-a-secret"
+        ORGANIZATION_NAME: "Informação para todos"
+      run: python manage.py makemigrations --check
+    - name: Run tests
+      env:
+        DJANGO_SETTINGS_MODULE: "core.settings"
+        DATABASE_URL: "postgres://postgres:postgres@localhost:5432/laia"
+        SECRET_KEY: "this-is-a-secret"
+        ORGANIZATION_NAME: "Informação para todos"
+      run: pytest

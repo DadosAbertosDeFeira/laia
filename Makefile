@@ -21,3 +21,6 @@ stop:
 
 shell:
 	docker-compose run --rm web python manage.py shell
+
+tests:
+	docker-compose run --rm web poetry run pytest
