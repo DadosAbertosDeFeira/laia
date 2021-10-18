@@ -4,6 +4,12 @@
 
 Cadastre e acompanhe o status dos seus pedidos de informação 📃✨
 
+----
+
+Quer usar esse projeto? Cadastre-se no [Heroku](https://heroku.comhttps://heroku.com) e clique no botão para deploy:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/DadosAbertosDeFeira/laia)
+
 ## Configurando seu ambiente
 
 ### Carregue as variáveis de ambiente
@@ -29,13 +35,7 @@ poetry install
 docker-compose up --build
 ```
 
-Para aplicar as _migrations, execute:
-
-```bash
-make migrate
-```
-
-Para aplicar as _migrations, execute:
+Para aplicar as migrations, execute:
 
 ```bash
 make migrate
