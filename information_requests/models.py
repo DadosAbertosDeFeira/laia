@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.db import models
 
 STATUS_OPTIONS = (
@@ -58,6 +60,15 @@ class InformationRequest(CreatedUpdatedAtMixin, models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def days_without_reply(self):
+        if self.replied_at is None:
+            difference = date.today() - self.sent_at
+        else:
+            difference = self.replied_at - self.sent_at
+
+        return difference.days
 
 
 class PublicAgency(CreatedUpdatedAtMixin, models.Model):
