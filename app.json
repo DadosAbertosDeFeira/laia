@@ -1,0 +1,32 @@
+{
+  "name": "laia",
+  "description": "Seus pedidos de informação e denúncias em um só lugar",
+  "scripts": {},
+  "env": {
+    "ALLOWED_HOSTS": "0.0.0.0,NOME_DO_SEU_APP_AQUI.herokuapp.com",
+    "DISABLE_COLLECTSTATIC": "1",
+    "ORGANIZATION_NAME": {
+      "required": true
+    },
+    "SECRET_KEY": {
+      "generator": "secret"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/moneymeets/python-poetry-buildpack"
+    },
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "stack": "heroku-20"
+}
