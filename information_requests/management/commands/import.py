@@ -21,12 +21,11 @@ class Command(BaseCommand):
                     initials=row["Sigla do Órgão"],
                     sphere=row["Esfera"].lower(),
                 )
+                replied_at = parse(row["Data de resposta"]) if row["Data de resposta"] else None
 
                 information_request, created = InformationRequest.objects.get_or_create(
                     sent_at=parse(row["Data de envio"]),
-                    replied_at=parse(row["Data de resposta"])
-                    if row["Data de resposta"]
-                    else None,
+                    replied_at=replied_at,
                     public_agency=public_agency,
                     title=row["Pedido"],
                     contact=row["Meio de contato"],
