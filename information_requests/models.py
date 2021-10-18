@@ -43,7 +43,7 @@ class InformationRequest(CreatedUpdatedAtMixin, models.Model):
     public_agency = models.ForeignKey(
         "PublicAgency", verbose_name="Órgão", on_delete=models.PROTECT
     )
-    title = models.CharField("Título do Pedido", max_length=100)
+    title = models.CharField("Título do Pedido", max_length=150)
     contact = models.CharField("Meio de Contato", max_length=200)
     status = models.CharField(
         "Status do Pedido", max_length=50, choices=STATUS_OPTIONS, blank=True
@@ -61,7 +61,7 @@ class InformationRequest(CreatedUpdatedAtMixin, models.Model):
 
 
 class PublicAgency(CreatedUpdatedAtMixin, models.Model):
-    name = models.CharField("Nome", max_length=100)
+    name = models.CharField("Nome", max_length=150)
     initials = models.CharField("Sigla", max_length=50)
     sphere = models.CharField("Esfera", max_length=20, choices=SPHERE_OPTIONS)
     website = models.URLField("Site", max_length=50, blank=True)
@@ -87,7 +87,7 @@ class Complaint(CreatedUpdatedAtMixin, models.Model):
     finished_at = models.DateField(
         "Data de conclusão", db_index=True, null=True, blank=True
     )
-    title = models.CharField("Título", max_length=100)
+    title = models.CharField("Título", max_length=150)
     public_agency = models.ForeignKey(
         "PublicAgency", verbose_name="Órgão", on_delete=models.PROTECT
     )
