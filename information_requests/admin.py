@@ -54,7 +54,7 @@ class ComplaintModelAdmin(admin.ModelAdmin):
         "public_agency",
         "request_and_body",
         "status",
-        "created_at",
+        "registered_at",
         "finished_at",
     )
     list_filter = (
