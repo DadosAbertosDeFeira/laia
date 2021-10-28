@@ -1,6 +1,6 @@
 # Laiá
 
-Laiá é uma aplicação onde você será capaz de cadastrar, atualizar, acompanhar o status dos seus **pedidos de informação** e disponibilizá-los publicamente. 
+Laiá é uma aplicação onde você será capaz de cadastrar, atualizar, acompanhar o status dos seus **pedidos de informação** e **denúncias** disponibilizá-los publicamente.
 
 Não sabe o que é um pedido de informação ou não sabe como fazer uma solicitação? Para saber mais, leia os artigos abaixo ⬇️
 
@@ -8,98 +8,91 @@ Não sabe o que é um pedido de informação ou não sabe como fazer uma solicit
 
 - [Solicitando dados via Lei de Acesso à Informação](https://escoladedados.org/tutoriais/solicitando-dados-via-lei-de-acesso-a-informacao/)
 
-Nessa página você encontrará instruções de instalação e contribuição do Laiá.
+Nessa página você encontrará as seguintes insformações:
 
-1. [Deploy no Heroku](#deploy-no-heroku)
-
+1. [Deploy](#deploy)
 2. [Instalação e configuração do Laiá](#Instalacao-e-configuracao-do-laia)
+3. [Criando pedidos de informação](criando-pedidos-de-informacao)
+4. [Como contribuir](#Como-contribuir)
 
-3. [Como contribuir](#Como_contribuir)
+## Deploy
 
-## Deploy no Heroku
+Você pode facilmente usar o Laiá via deploy no Heroku ou imagem do Docker.
 
-Você pode facilmente usar o Laiá via deploy do Heroku. Para isso, basta criar ou acessar seu cadastro no Heroku e clicar no botão abaixo para Deploy:
+Para fazer o deploy via Heroku, basta criar ou acessar seu cadastro no [Heroku](https://id.heroku.com/login) e clicar no botão abaixo para Deploy:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/DadosAbertosDeFeira/laia)
 
+Para fazer o deploy via Docker, você irá precisar do nosso arquivo de image, o Dockerfile. Basta rodar o comando do `docker run nome-container` e o container será criado! Clique [aqui](https://docs.docker.com/language/python/run-containers/) para mais informações.
+
 ## Instalação e configuração do Laiá
 
-Para instalar o projeto, certifique-se que você possui os seguintes requisitos instalados localmente na sua máquina:
+Para instalar e configurar o projeto, recomendamos acessar as instruções contidas no nosso [repositório](https://github.com/DadosAbertosDeFeira/laia/blob/main/README.md).
 
-- Docker;
+## Criando pedidos de informação
 
-- Poetry;
+Agora que o seu projeto está configurado, chegou a hora de criar usuários, inserir pedidos, órgãos e denúncias.
 
-- Pre-commit. 
+### Como criar um usuário
 
-Esses requisitos são essenciais para a execução do Laiá, que é feita com Docker e docker-compose. Utilizamos o Poetry, para instalar automaticamente todas as dependências do projeto e a biblioteca pre-commit para commitar o código formatado.
+A criação dos usuários pode ser feita via [comando](https://github.com/DadosAbertosDeFeira/laia/blob/main/README.md#crie-um-usu%C3%A1rio-para-incluir-seus-pedidos) ou acessando a aba de Usuários do [admin](http://0.0.0.0:8000/admin/auth/user/).
 
-### Configurando as Variáveis de Ambiente
+Para criar um novo usuário, clique em ADICIONAR USUÁRIO e preencha as informações de acesso (usuário e senha).
 
-Para a aplicação funcionar, precisamos carregar as variáveis de ambiente. Ou seja, é necessário criar um arquivo `.env`, um arquivo de configuração individual que contém dados sensíveis.
+![](https://i.ibb.co/0XKPhj3/Captura-de-Tela-2021-10-27-a-s-23-33-09.png)
 
-Para configurar sua `.env`, busque pelo exemplo de configuração nomeado como `.env.example` na raiz do projeto, faça uma cópia e o renomeie para `.env` e pronto! Não é necessário fazer alterações nas informações contidas no corpo desse arquivo.
+Além de usuários, é possível criar Grupos, que se tornam ferramentas essenciais para conseguir gerenciar o nível de acesso e permissões de cada usuário cadastrado, evitando assim tanto o acesso como a deleção de informações de forma errada.
 
-### Instalando as dependências do projeto
+Para criar um grupo, acesse o menu à esquerda da página, em AUTENTICAÇÃO E AUTORIZAÇÃO, e clique em Grupos.
 
-Com as variáveis de ambiente configuradas, chegou a hora de instalarmos as depedências do Laiá. Siga o passo-a-passo a seguir:
+![](https://i.ibb.co/N7003pS/Captura-de-Tela-2021-10-27-a-s-23-49-07.png)
 
-#### 1. Instale as dependências do projeto
+Nomeie o Grupo e selecione as permissões para esse grupo. No exemplo acima, estamos criando um Grupo onde, usuários pertencentes à ele serão capazes de visualizar, adicionar e atualizar pedidos, órgãos e denúncias. Outras ações como deleção desses campos não é permitida.
 
-```bash
-poetry install
-```
+Com essa ferramenta, você é capaz de filtrar o nível de permissão para gerenciar usuários, grupos, sessão, permissão e log.
 
-#### 2. Crie sua aplicação com docker-compose
+Para inserir usuários aos Grupos, basta acessar os usuários criados no menu de AUTENTICAÇÃO E AUTORIZAÇÃO, e incluí-los em um ou mais grupos. Note que é possível editar as Permissões do Usuário manualmente também.
 
-```bash
-docker-compose up --build
-```
+### Como criar um pedido de informação
 
-#### 3. Aplique as migrations
+Agora que os nossos usuários estão configurados, chegou a hora de criarmos os nossos pedidos de informação. Você pode adicionar os pedidos individualmente ou multiplos pedidos de uma vez só.
 
-```bash
-make migrate
-```
+### Adicionando um pedido
 
-Outros atalhos podem ser encontrados no nosso arquivo [Makefile](Makefile).
+Para adicionar um pedido, acesse a página [admin](http://0.0.0.0:8000/admin/) e clique em Pedidos.
 
-Com as dependências instaladas, podemos iniciar o ambiente virtual do Laiá.
+![](https://i.ibb.co/yFsRP03/Captura-de-Tela-2021-10-28-a-s-00-21-05.png)
 
+Nessa Aba, você será capaz de visualizar todos os seus pedidos inseridos. Clicando em **ADICIONAR PEDIDO**, você acessará uma aba onde você irá preencher as informações do seu pedido. Note que os campos: Data de envio, Órgão, Título do Pedido, Meio de Contato e Texto são campos **obrigatórios**.
 
+![](https://i.ibb.co/SxG0VSV/Captura-de-Tela-2021-10-28-a-s-00-23-30.png)
 
-#### Rodando o Laiá
+Caso o Órgão que você solicitou informações não conste nas opções, clique em "+" e um pop-up irá abrir. Preencha as informações do Órgão e salve suas alterações.
 
-#### 1. Inicie o Ambiente Virtual
+![](https://i.ibb.co/bg5bqX1/Captura-de-Tela-2021-10-28-a-s-00-28-49.png)
 
-```bash
-poetry shell
-```
+Com todas as informações preenchidas, clique em Salvar e pronto, você cadastrou um pedido!
 
-Esse comando é responsável por ativar a máquina virtual com todas as dependências previamente instaladas. 
+### Adicionando multiplos pedidos
 
-#### 2. Crie seu usuário para inserir pedidos de informação
+No Laiá, é possível adicionar multiplos pedidos de uma vez através de um arquivo `.csv` padronizado. Para a importação dos seus pedidos ser bem sucedida, recomendamos criar uma planilha baseada neste exemplo*.
+
+*aqui vou compartilhar uma tabelinha no drive pra servir de molde :)
+
+Com a planilha criada, importe o arquivo para a raiz do projeto. E rode o seguinte comando para importá-la automaticamente:
 
 ```bash
-make createsuperuser
+docker-compose run --rm web python manage.py import <aqui-o-seu-arquivo>.csv
 ```
 
-#### 2. Aplique as migrations
+Quando a importação for finalizada, você receberá a seguinte mensagem:
 
 ```bash
-make migrate
+Concluído! Foram inseridos n pedidos de informação.
 ```
 
-#### 3. Rode a aplicação
+Obs: Quando inserimos multiplos pedidos, não é necessário adicionar os Órgãos manualmente, durante a importação da planilha os mesmos são criados automaticamente com informações básicas de Nome, Sigla e Esfera.
 
-```bash
-make run
-```
+### Informações importantes
 
-E acesse [localhost:8000](http://localhost:8000) para visualizar o Laiá ou [localhost:8000/admin](http://localhost:8000/admin) para gerenciar seus pedidos. 
-
-
-
-#### Rodando os testes
-
-Você pode executar os testes no ambiente virtual criado pelo Poetry com `pytest` ou rodando `make tests` para executar os testes dentro do container.
+- Um pedido está **sempre** relacionado a um Órgão, portanto, a deleção de um Órgão só poderá ser feita se todos os pedidos associados a ele também forem deletados.
