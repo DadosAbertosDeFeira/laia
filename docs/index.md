@@ -53,7 +53,7 @@ Além de usuários, é possível criar Grupos, que se tornam ferramentas essenci
 
 Para criar um grupo, acesse o menu à esquerda da página, em AUTENTICAÇÃO E AUTORIZAÇÃO, e clique em Grupos.
 
-![](imgs/cria_grupo.png)
+![](cria_grupo.png)
 
 Nomeie o Grupo e selecione as permissões para esse grupo. No exemplo acima, estamos criando um Grupo onde, usuários pertencentes à ele serão capazes de visualizar, adicionar e atualizar pedidos, órgãos e denúncias. Outras ações como deleção desses campos não é permitida.
 
@@ -71,15 +71,15 @@ Você pode adicionar os pedidos individualmente ou múltiplos pedidos de uma vez
 
 Para adicionar um pedido, acesse a página [admin](http://0.0.0.0:8000/admin/) e clique em Pedidos.
 
-![](imgs/adiciona_pedido.png)
+![](adiciona_pedido.png)
 
 Nessa Aba, você será capaz de visualizar todos os seus pedidos inseridos. Clicando em **ADICIONAR PEDIDO**, você acessará uma aba onde você irá preencher as informações do seu pedido. Note que os campos: Data de envio, Órgão, Título do Pedido, Meio de Contato e Texto são campos **obrigatórios**.
 
-![](imgs/cadastro_pedido.png)
+![](cadastro_pedido.png)
 
 Caso o Órgão que você solicitou informações não conste nas opções, clique em "+" e um pop-up irá abrir. Preencha as informações do Órgão e salve suas alterações.
 
-![](imgs/adiciona_orgao.png)
+![](adiciona_orgao.png)
 
 Com todas as informações preenchidas, clique em Salvar e pronto, você cadastrou um pedido!
 
