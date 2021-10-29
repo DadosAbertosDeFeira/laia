@@ -47,13 +47,13 @@ A partir de agora, você poderá inserir novos usuários acessando a aba de [Usu
 
 Para criar um novo usuário, clique em ADICIONAR USUÁRIO e preencha as informações de acesso (usuário e senha).
 
-![](adiciona_usuario.png)
+![](imgs/adiciona_usuario.png)
 
 Além de usuários, é possível criar Grupos, que se tornam ferramentas essenciais para conseguir gerenciar o nível de acesso e permissões de cada usuário cadastrado, evitando assim tanto o acesso como a deleção de informações de forma errada.
 
 Para criar um grupo, acesse o menu à esquerda da página, em AUTENTICAÇÃO E AUTORIZAÇÃO, e clique em Grupos.
 
-![](cria_grupo.png)
+![](imgs/cria_grupo.png)
 
 Nomeie o Grupo e selecione as permissões para esse grupo. No exemplo acima, estamos criando um Grupo onde, usuários pertencentes à ele serão capazes de visualizar, adicionar e atualizar pedidos, órgãos e denúncias. Outras ações como deleção desses campos não é permitida.
 
@@ -71,15 +71,15 @@ Você pode adicionar os pedidos individualmente ou múltiplos pedidos de uma vez
 
 Para adicionar um pedido, acesse a página [admin](http://0.0.0.0:8000/admin/) e clique em Pedidos.
 
-![](adiciona_pedido.png)
+![](imgs/adiciona_pedido.png)
 
 Nessa Aba, você será capaz de visualizar todos os seus pedidos inseridos. Clicando em **ADICIONAR PEDIDO**, você acessará uma aba onde você irá preencher as informações do seu pedido. Note que os campos: Data de envio, Órgão, Título do Pedido, Meio de Contato e Texto são campos **obrigatórios**.
 
-![](cadastro_pedido.png)
+![](imgs/cadastro_pedido.png)
 
 Caso o Órgão que você solicitou informações não conste nas opções, clique em "+" e um pop-up irá abrir. Preencha as informações do Órgão e salve suas alterações.
 
-![](adiciona_orgao.png)
+![](imgs/adiciona_orgao.png)
 
 Com todas as informações preenchidas, clique em Salvar e pronto, você cadastrou um pedido!
 
@@ -109,7 +109,7 @@ Denúncias são feitas quando há um descumprimento da Lei de Acesso à Informa�
 
 Para registrar uma denúncia no Laiá, acesse a página [admin](http://0.0.0.0:8000/admin/auth/user/), e clique em Denúncias.
 
-![](cria_denuncia.png)
+![](imgs/cria_denuncia.png)
 
 Clicando em **ADICIONAR DENÚNCIA**, você acessará uma aba onde você irá preencher as informações da sua denúncia. Note que os campos: Pedido, Data de Registro da denúncia, Título, Órgão, Meio de Contato e Texto são campos **obrigatórios**.
 
