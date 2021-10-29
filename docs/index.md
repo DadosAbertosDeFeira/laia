@@ -11,8 +11,8 @@ Não sabe o que é um pedido de informação ou não sabe como fazer uma solicit
 Nessa página você encontrará as seguintes insformações:
 
 1. [Deploy](#deploy)
-2. [Instalação e configuração do Laiá](#Instalação-e-configuração-do-laia)
-3. [Criando pedidos de informação](#Criando-pedidos-de-informação)
+2. [Instalação e configuração do Laiá](#instalação-e-configuração-do-laia)
+3. [Criando pedidos de informação](#criando-pedidos-de-informação)
 4. [Como contribuir](#Como-contribuir)
 
 ## Deploy
@@ -43,13 +43,13 @@ A partir de agora, você poderá inserir novos usuários acessando a aba de [Usu
 
 Para criar um novo usuário, clique em ADICIONAR USUÁRIO e preencha as informações de acesso (usuário e senha).
 
-![](laia/docs/imgs/adiciona_usuario.png)
+![](imgs/adiciona_usuario.png)
 
 Além de usuários, é possível criar Grupos, que se tornam ferramentas essenciais para conseguir gerenciar o nível de acesso e permissões de cada usuário cadastrado, evitando assim tanto o acesso como a deleção de informações de forma errada.
 
 Para criar um grupo, acesse o menu à esquerda da página, em AUTENTICAÇÃO E AUTORIZAÇÃO, e clique em Grupos.
 
-![](laia/docs/imgs/cria_grupo.png)
+![](imgs/cria_grupo.png)
 
 Nomeie o Grupo e selecione as permissões para esse grupo. No exemplo acima, estamos criando um Grupo onde, usuários pertencentes à ele serão capazes de visualizar, adicionar e atualizar pedidos, órgãos e denúncias. Outras ações como deleção desses campos não é permitida.
 
@@ -67,15 +67,15 @@ Você pode adicionar os pedidos individualmente ou múltiplos pedidos de uma vez
 
 Para adicionar um pedido, acesse a página [admin](http://0.0.0.0:8000/admin/) e clique em Pedidos.
 
-![](laia/docs/imgs/adiciona_pedido.png)
+![](imgs/adiciona_pedido.png)
 
 Nessa Aba, você será capaz de visualizar todos os seus pedidos inseridos. Clicando em **ADICIONAR PEDIDO**, você acessará uma aba onde você irá preencher as informações do seu pedido. Note que os campos: Data de envio, Órgão, Título do Pedido, Meio de Contato e Texto são campos **obrigatórios**.
 
-![](laia/docs/imgs/cadastro_pedido.png)
+![](imgs/cadastro_pedido.png)
 
 Caso o Órgão que você solicitou informações não conste nas opções, clique em "+" e um pop-up irá abrir. Preencha as informações do Órgão e salve suas alterações.
 
-![](laia/docs/imgs/adiciona_orgao.png)
+![](imgs/adiciona_orgao.png)
 
 Com todas as informações preenchidas, clique em Salvar e pronto, você cadastrou um pedido!
 
