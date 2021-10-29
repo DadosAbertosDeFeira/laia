@@ -101,6 +101,23 @@ Concluído! Foram inseridos n pedidos de informação.
 
 Obs: Quando inserimos múltiplos pedidos, não é necessário adicionar os Órgãos manualmente, durante a importação da planilha os mesmos são criados automaticamente com informações básicas de Nome, Sigla e Esfera.
 
+## Criando denúncias
+
+Além de criar novos usuários, órgãos e pedidos de informação, com o Laiá é possível registrar suas *denúncias*.
+
+Denúncias são feitas quando há um descumprimento da Lei de Acesso à Informação aos órgãos de controle. Clique [aqui](https://www.gov.br/acessoainformacao/pt-br/assuntos/conheca-seu-direito/descumprimento-da-lai-o-que-fazer) e [aqui](https://dadosabertosdefeira.medium.com/como-fazer-uma-den%C3%BAncia-ao-tcm-ba-d7807dd3537c) para saber mais.
+
+Para registrar uma denúncia no Laiá, acesse a página [admin](http://0.0.0.0:8000/admin/auth/user/), e clique em Denúncias.
+
+![](cria_denuncia.png)
+
+Clicando em **ADICIONAR DENÚNCIA**, você acessará uma aba onde você irá preencher as informações da sua denúncia. Note que os campos: Pedido, Data de Registro da denúncia, Título, Órgão, Meio de Contato e Texto são campos **obrigatórios**.
+
+Com todas essas informações preenchidas, clique em Salvar e pronto, denúncia registrada com sucesso!
+
+
 ### Informações importantes
 
 - Um pedido está **sempre** relacionado a um Órgão, portanto, a deleção de um Órgão só poderá ser feita se todos os pedidos associados a ele também forem deletados.
+
+- Uma denúncia está **sempre** relacionado a um Pedido, portanto, a deleção de um Pedido só poderá ser feita se as denúncias associadas a esse pedido também forem deletadas.
