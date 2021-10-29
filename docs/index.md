@@ -9,7 +9,6 @@ Não sabe o que é um pedido de informação ou não sabe como fazer uma solicit
 - [Solicitando dados via Lei de Acesso à Informação](https://escoladedados.org/tutoriais/solicitando-dados-via-lei-de-acesso-a-informacao/)
 
 Nessa página você encontrará as seguintes insformações:
-
   - [Deploy](#deploy)
   - [Instalação e configuração do Laiá](#instalação-e-configuração-do-laiá)
   - [Criando pedidos de informação](#criando-pedidos-de-informação)
@@ -17,7 +16,8 @@ Nessa página você encontrará as seguintes insformações:
     - [Como criar um pedido de informação](#como-criar-um-pedido-de-informação)
     - [Adicionando um pedido](#adicionando-um-pedido)
     - [Adicionando múltiplos pedidos](#adicionando-múltiplos-pedidos)
-    - [Informações importantes](#informações-importantes)
+  - [Criando denúncias](#criando-denúncias)
+  - [Informações importantes](#informações-importantes)
 
 ## Deploy
 
@@ -116,7 +116,7 @@ Clicando em **ADICIONAR DENÚNCIA**, você acessará uma aba onde você irá pre
 Com todas essas informações preenchidas, clique em Salvar e pronto, denúncia registrada com sucesso!
 
 
-### Informações importantes
+## Informações importantes
 
 - Um pedido está **sempre** relacionado a um Órgão, portanto, a deleção de um Órgão só poderá ser feita se todos os pedidos associados a ele também forem deletados.
 
