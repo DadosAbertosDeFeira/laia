@@ -11,8 +11,8 @@ Não sabe o que é um pedido de informação ou não sabe como fazer uma solicit
 Nessa página você encontrará as seguintes insformações:
 
 1. [Deploy](#deploy)
-2. [Instalação e configuração do Laiá](#Instalacao-e-configuracao-do-laia)
-3. [Criando pedidos de informação](criando-pedidos-de-informacao)
+2. [Instalação e configuração do Laiá](#Instalação-e-configuração-do-laia)
+3. [Criando pedidos de informação](#Criando-pedidos-de-informação)
 4. [Como contribuir](#Como-contribuir)
 
 ## Deploy
@@ -23,7 +23,7 @@ Para fazer o deploy via Heroku, basta criar ou acessar seu cadastro no [Heroku](
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/DadosAbertosDeFeira/laia)
 
-Para fazer o deploy via Docker, você irá precisar do nosso arquivo de image, o Dockerfile. Basta rodar o comando do `docker run nome-container` e o container será criado! Clique [aqui](https://docs.docker.com/language/python/run-containers/) para mais informações.
+Você também pode fazer o deploy via Docker.
 
 ## Instalação e configuração do Laiá
 
@@ -35,17 +35,21 @@ Agora que o seu projeto está configurado, chegou a hora de criar usuários, ins
 
 ### Como criar um usuário
 
-A criação dos usuários pode ser feita via [comando](https://github.com/DadosAbertosDeFeira/laia/blob/main/README.md#crie-um-usu%C3%A1rio-para-incluir-seus-pedidos) ou acessando a aba de Usuários do [admin](http://0.0.0.0:8000/admin/auth/user/).
+Antes de criarmos novos usuários, pedidos, órgãos e denúncias, certifique-se que você configurou o seu [super usuário](https://github.com/DadosAbertosDeFeira/laia/blob/main/README.md#crie-um-usu%C3%A1rio-para-incluir-seus-pedidos) no ambiente de produção. Sem o super usuário, não é possível acessar a página admmin do Laiá e consequentemente não será possível criar novos usuários, pedidos, órgãos e denúncias.
+
+Agora que você já criou o seu super usuário, acesse a página [admin](http://0.0.0.0:8000/admin/auth/user/) com suas credenciais cadastradas.
+
+A partir de agora, você poderá inserir novos usuários acessando a aba de [Usuários](http://0.0.0.0:8000/admin/auth/user/).
 
 Para criar um novo usuário, clique em ADICIONAR USUÁRIO e preencha as informações de acesso (usuário e senha).
 
-![](https://i.ibb.co/0XKPhj3/Captura-de-Tela-2021-10-27-a-s-23-33-09.png)
+![](laia/docs/imgs/adiciona_usuario.png)
 
 Além de usuários, é possível criar Grupos, que se tornam ferramentas essenciais para conseguir gerenciar o nível de acesso e permissões de cada usuário cadastrado, evitando assim tanto o acesso como a deleção de informações de forma errada.
 
 Para criar um grupo, acesse o menu à esquerda da página, em AUTENTICAÇÃO E AUTORIZAÇÃO, e clique em Grupos.
 
-![](https://i.ibb.co/N7003pS/Captura-de-Tela-2021-10-27-a-s-23-49-07.png)
+![](laia/docs/imgs/cria_grupo.png)
 
 Nomeie o Grupo e selecione as permissões para esse grupo. No exemplo acima, estamos criando um Grupo onde, usuários pertencentes à ele serão capazes de visualizar, adicionar e atualizar pedidos, órgãos e denúncias. Outras ações como deleção desses campos não é permitida.
 
@@ -55,29 +59,29 @@ Para inserir usuários aos Grupos, basta acessar os usuários criados no menu de
 
 ### Como criar um pedido de informação
 
-Agora que os nossos usuários estão configurados, chegou a hora de criarmos os nossos pedidos de informação. Você pode adicionar os pedidos individualmente ou multiplos pedidos de uma vez só.
+Agora que os nossos usuários estão configurados, chegou a hora de criarmos os nossos pedidos de informação.
+
+Você pode adicionar os pedidos individualmente ou múltiplos pedidos de uma vez só.
 
 ### Adicionando um pedido
 
 Para adicionar um pedido, acesse a página [admin](http://0.0.0.0:8000/admin/) e clique em Pedidos.
 
-![](https://i.ibb.co/yFsRP03/Captura-de-Tela-2021-10-28-a-s-00-21-05.png)
+![](laia/docs/imgs/adiciona_pedido.png)
 
 Nessa Aba, você será capaz de visualizar todos os seus pedidos inseridos. Clicando em **ADICIONAR PEDIDO**, você acessará uma aba onde você irá preencher as informações do seu pedido. Note que os campos: Data de envio, Órgão, Título do Pedido, Meio de Contato e Texto são campos **obrigatórios**.
 
-![](https://i.ibb.co/SxG0VSV/Captura-de-Tela-2021-10-28-a-s-00-23-30.png)
+![](laia/docs/imgs/cadastro_pedido.png)
 
 Caso o Órgão que você solicitou informações não conste nas opções, clique em "+" e um pop-up irá abrir. Preencha as informações do Órgão e salve suas alterações.
 
-![](https://i.ibb.co/bg5bqX1/Captura-de-Tela-2021-10-28-a-s-00-28-49.png)
+![](laia/docs/imgs/adiciona_orgao.png)
 
 Com todas as informações preenchidas, clique em Salvar e pronto, você cadastrou um pedido!
 
-### Adicionando multiplos pedidos
+### Adicionando múltiplos pedidos
 
-No Laiá, é possível adicionar multiplos pedidos de uma vez através de um arquivo `.csv` padronizado. Para a importação dos seus pedidos ser bem sucedida, recomendamos criar uma planilha baseada neste exemplo*.
-
-*aqui vou compartilhar uma tabelinha no drive pra servir de molde :)
+No Laiá, é possível adicionar múltiplos pedidos de uma vez através de um arquivo `.csv` padronizado. Para a importação dos seus pedidos ser bem sucedida, recomendamos criar uma planilha baseada [neste](https://docs.google.com/spreadsheets/d/1Ly1XQIWbvh7bPpQEOeSlD_0rJ-Xcwn-8qg6mAu1OZdc/edit?usp=sharing) exemplo.
 
 Com a planilha criada, importe o arquivo para a raiz do projeto. E rode o seguinte comando para importá-la automaticamente:
 
@@ -91,7 +95,7 @@ Quando a importação for finalizada, você receberá a seguinte mensagem:
 Concluído! Foram inseridos n pedidos de informação.
 ```
 
-Obs: Quando inserimos multiplos pedidos, não é necessário adicionar os Órgãos manualmente, durante a importação da planilha os mesmos são criados automaticamente com informações básicas de Nome, Sigla e Esfera.
+Obs: Quando inserimos múltiplos pedidos, não é necessário adicionar os Órgãos manualmente, durante a importação da planilha os mesmos são criados automaticamente com informações básicas de Nome, Sigla e Esfera.
 
 ### Informações importantes
 
