@@ -10,10 +10,14 @@ Não sabe o que é um pedido de informação ou não sabe como fazer uma solicit
 
 Nessa página você encontrará as seguintes insformações:
 
-1. [Deploy](#deploy)
-2. [Instalação e configuração do Laiá](#instalação-e-configuração-do-laia)
-3. [Criando pedidos de informação](#criando-pedidos-de-informação)
-4. [Como contribuir](#Como-contribuir)
+  - [Deploy](#deploy)
+  - [Instalação e configuração do Laiá](#instalação-e-configuração-do-laiá)
+  - [Criando pedidos de informação](#criando-pedidos-de-informação)
+    - [Como criar um usuário](#como-criar-um-usuário)
+    - [Como criar um pedido de informação](#como-criar-um-pedido-de-informação)
+    - [Adicionando um pedido](#adicionando-um-pedido)
+    - [Adicionando múltiplos pedidos](#adicionando-múltiplos-pedidos)
+    - [Informações importantes](#informações-importantes)
 
 ## Deploy
 
@@ -43,7 +47,7 @@ A partir de agora, você poderá inserir novos usuários acessando a aba de [Usu
 
 Para criar um novo usuário, clique em ADICIONAR USUÁRIO e preencha as informações de acesso (usuário e senha).
 
-![](imgs/adiciona_usuario.png)
+![](adiciona_usuario.png)
 
 Além de usuários, é possível criar Grupos, que se tornam ferramentas essenciais para conseguir gerenciar o nível de acesso e permissões de cada usuário cadastrado, evitando assim tanto o acesso como a deleção de informações de forma errada.
 
