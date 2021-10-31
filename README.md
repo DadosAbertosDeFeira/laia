@@ -1,6 +1,7 @@
 # Laiá
 
 [![CI](https://github.com/DadosAbertosDeFeira/pedidos/actions/workflows/ci.yml/badge.svg)](https://github.com/DadosAbertosDeFeira/pedidos/actions/workflows/ci.yml)
+[![Publish Docker image](https://github.com/DadosAbertosDeFeira/laia/actions/workflows/push-docker-image.yml/badge.svg)](https://github.com/DadosAbertosDeFeira/laia/actions/workflows/push-docker-image.yml)
 
 Cadastre e acompanhe o status dos seus pedidos de informação 📃✨
 
