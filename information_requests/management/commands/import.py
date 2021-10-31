@@ -1,8 +1,8 @@
 import csv
+import unicodedata
 
 from dateutil.parser import parse
 from django.core.management.base import BaseCommand
-from unidecode import unidecode
 
 from information_requests.models import InformationRequest, PublicAgency
 
@@ -28,8 +28,9 @@ class Command(BaseCommand):
 
                 def clean_string(string):
                     new_string = string.lower().replace(" ", "_")
-                    normalized = unidecode(new_string, "utf-8")
-                    return unidecode(normalized)
+                    normalized = unicodedata.normalize("NFKD", new_string)
+                    normalized = normalized.encode("ascii", "ignore")
+                    return normalized.decode()
 
                 information_request, created = InformationRequest.objects.get_or_create(
                     sent_at=parse(row["Data de envio"]),
@@ -43,7 +44,6 @@ class Command(BaseCommand):
                     reply=row["Resposta"],
                 )
 
-                print(clean_string(row["Status"]))
                 if created:
                     count += 1
 
