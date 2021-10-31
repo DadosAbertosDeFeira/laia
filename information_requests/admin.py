@@ -14,6 +14,7 @@ class InformationRequestMixin(admin.ModelAdmin):
         "replied_at",
         "days_without_reply",
     )
+    search_fields = ("title", "text", "reply")
 
     def days_without_reply(self, information_request):
         return information_request.days_without_reply
