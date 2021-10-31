@@ -2,6 +2,7 @@ import csv
 
 from dateutil.parser import parse
 from django.core.management.base import BaseCommand
+from unidecode import unidecode
 
 from information_requests.models import InformationRequest, PublicAgency
 
@@ -25,18 +26,24 @@ class Command(BaseCommand):
                     parse(row["Data de resposta"]) if row["Data de resposta"] else None
                 )
 
+                def clean_string(string):
+                    new_string = string.lower().replace(" ", "_")
+                    normalized = unidecode(new_string, "utf-8")
+                    return unidecode(normalized)
+
                 information_request, created = InformationRequest.objects.get_or_create(
                     sent_at=parse(row["Data de envio"]),
                     replied_at=replied_at,
                     public_agency=public_agency,
                     title=row["Pedido"],
                     contact=row["Meio de contato"],
-                    status=row["Status"].lower().replace(" ", "_"),
+                    status=clean_string(row["Status"]),
                     historic=row["Histórico"],
                     text=row["Texto"],
                     reply=row["Resposta"],
                 )
 
+                print(clean_string(row["Status"]))
                 if created:
                     count += 1
 
