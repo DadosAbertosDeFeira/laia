@@ -95,6 +95,9 @@ class PublicAgency(CreatedUpdatedAtMixin, models.Model):
 
 
 class Complaint(CreatedUpdatedAtMixin, models.Model):
+    user_complaint = models.ForeignKey(
+        User, verbose_name="Usuário", on_delete=models.PROTECT, null=True, blank=True
+    )
     information_request = models.ForeignKey(
         "InformationRequest", verbose_name="Pedido", on_delete=models.PROTECT
     )
