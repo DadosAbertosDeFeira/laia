@@ -6,7 +6,7 @@ authors = ["Dados Abertos de Feira <dadosabertosdefeira@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "3.8.12"
-Django = "^3.2.13"
+Django = "^3.2.15"
 python-decouple = "^3.4"
 django-public-admin = "^0.0.5"
 python-dateutil = "^2.8.2"
