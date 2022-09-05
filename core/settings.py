@@ -1,10 +1,9 @@
 import os
-import sentry_sdk
-
 from pathlib import Path
 
 import dj_database_url
 import django_on_heroku
+import sentry_sdk
 from decouple import config
 from sentry_sdk.integrations.django import DjangoIntegration
 
