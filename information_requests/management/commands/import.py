@@ -1,4 +1,5 @@
 import csv
+import unicodedata
 
 from dateutil.parser import parse
 from django.core.management.base import BaseCommand
@@ -25,13 +26,19 @@ class Command(BaseCommand):
                     parse(row["Data de resposta"]) if row["Data de resposta"] else None
                 )
 
+                def clean_string(string):
+                    new_string = string.lower().replace(" ", "_")
+                    normalized = unicodedata.normalize("NFKD", new_string)
+                    normalized = normalized.encode("ascii", "ignore")
+                    return normalized.decode()
+
                 information_request, created = InformationRequest.objects.get_or_create(
                     sent_at=parse(row["Data de envio"]),
                     replied_at=replied_at,
                     public_agency=public_agency,
                     title=row["Pedido"],
                     contact=row["Meio de contato"],
-                    status=row["Status"].lower().replace(" ", "_"),
+                    status=clean_string(row["Status"]),
                     historic=row["Histórico"],
                     text=row["Texto"],
                     reply=row["Resposta"],
