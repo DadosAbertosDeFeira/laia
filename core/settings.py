@@ -55,7 +55,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-default_db = "postgres://postgres:postgres@db:5432/laia"
+default_db = config("DATABASE_URL", default="postgres://postgres:postgres@db:5432/laia")
 DATABASES = {
     "default": dj_database_url.config(
         default=default_db, conn_max_age=600, ssl_require=False
