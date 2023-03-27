@@ -38,8 +38,8 @@ class CreatedUpdatedAtMixin(models.Model):
 
 
 class InformationRequest(CreatedUpdatedAtMixin, models.Model):
-    user = models.ForeignKey(
-        User, verbose_name="Usuário", on_delete=models.PROTECT, null=True, blank=True
+    maintainer = models.ForeignKey(
+        User, verbose_name="Usuário", on_delete=models.PROTECT, null=True
     )
     num_protocol = models.CharField("Número de Protocolo", max_length=25, blank=True)
     sent_at = models.DateField("Data de envio", db_index=True)
@@ -95,8 +95,8 @@ class PublicAgency(CreatedUpdatedAtMixin, models.Model):
 
 
 class Complaint(CreatedUpdatedAtMixin, models.Model):
-    user = models.ForeignKey(
-        User, verbose_name="Usuário", on_delete=models.PROTECT, null=True, blank=True
+    maintainer = models.ForeignKey(
+        User, verbose_name="Usuário", on_delete=models.PROTECT, null=True
     )
     information_request = models.ForeignKey(
         "InformationRequest", verbose_name="Pedido", on_delete=models.PROTECT
