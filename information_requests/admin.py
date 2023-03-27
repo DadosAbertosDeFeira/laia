@@ -44,7 +44,7 @@ class InformationRequestModelAdmin(InformationRequestMixin, admin.ModelAdmin):
 
 
 @admin.register(PublicAgency)
-class BodyModelAdmin(admin.ModelAdmin):
+class PublicAgencyAdmin(admin.ModelAdmin):
     pass
 
 
