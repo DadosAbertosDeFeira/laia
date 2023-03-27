@@ -1,4 +1,4 @@
-name: Publish Docker image
+name: Publica imagem no DockerHub
 
 # Executar sempre que uma release for publicada.
 on:
@@ -12,24 +12,23 @@ jobs:
     steps:
       # Checkout no código fonte
       - name: Check out the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      # Login no docker hub com as credenciais configuradas na organização no github.
+      # Login no docker hub com as credenciais configuradas na organização no github
       - name: Log in to Docker Hub
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Extrai metadados da release: tags e labels.
-      # Usa o namespace do docker hub configurado na organizaçào do github.
+      # Extrai metadados da release: tags e labels
+      # Usa o namespace do docker hub configurado na organização do github
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
           images: ${{ secrets.DOCKERHUB_ORGANIZATION }}/laia
 
-      # Faz o build e push da imagem.
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
