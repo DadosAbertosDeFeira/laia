@@ -127,24 +127,6 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
-name = "django-on-heroku"
-version = "1.1.2"
-description = "This package simplifies running a Django app on Heroku platform."
-category = "main"
-optional = false
-python-versions = "*"
-files = [
-    {file = "django-on-heroku-1.1.2.tar.gz", hash = "sha256:a41fe83ef7ecb022ca92b2950a61f79fef156e58f4f35fc7fc4ecacdc5225fb8"},
-    {file = "django_on_heroku-1.1.2-py2.py3-none-any.whl", hash = "sha256:4a72ade056335112cba22eea332552d840b718dd8140d43c2d70bb739875955b"},
-]
-
-[package.dependencies]
-dj-database-url = ">=0.5.0"
-django = "*"
-psycopg2-binary = "*"
-whitenoise = "*"
-
-[[package]]
 name = "django-public-admin"
 version = "0.0.5"
 description = "A public read-only version of the Django Admin"
@@ -681,22 +663,7 @@ files = [
     {file = "wcwidth-0.2.6.tar.gz", hash = "sha256:a5220780a404dbe3353789870978e472cfe477761f06ee55077256e509b156d0"},
 ]
 
-[[package]]
-name = "whitenoise"
-version = "6.4.0"
-description = "Radically simplified static file serving for WSGI applications"
-category = "main"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "whitenoise-6.4.0-py3-none-any.whl", hash = "sha256:599dc6ca57e48929dfeffb2e8e187879bfe2aed0d49ca419577005b7f2cc930b"},
-    {file = "whitenoise-6.4.0.tar.gz", hash = "sha256:a02d6660ad161ff17e3042653c8e3f5ecbb2a2481a006bde125b9efb9a30113a"},
-]
-
-[package.extras]
-brotli = ["Brotli"]
-
 [metadata]
 lock-version = "2.0"
 python-versions = "3.8.12"
-content-hash = "39b6ac4d96172299733fcfda9da66641f55aae3297e092c2ec93fc184134559e"
+content-hash = "8bc5c3b1617848e13816df8a518341b4a74bb1f1c43c94a671f4acf403927ce0"

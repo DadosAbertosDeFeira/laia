@@ -26,16 +26,6 @@ Nessa página você encontrará as seguintes insformações:
 
 ---
 
-## **Deploy**
-
-Você pode facilmente usar o Laiá via deploy no Heroku ou imagem do Docker.
-
-Para fazer o deploy via Heroku, basta criar ou acessar seu cadastro no [Heroku](https://id.heroku.com/login) e clicar no botão abaixo para Deploy:
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/DadosAbertosDeFeira/laia)
-
-Você também pode fazer o deploy via Docker.
-
 ## **Instalação e configuração do Laiá**
 
 Para instalar e configurar o projeto, recomendamos acessar as instruções contidas no nosso [repositório](https://github.com/DadosAbertosDeFeira/laia/blob/main/README.md).
