@@ -2,7 +2,6 @@ import os
 from pathlib import Path
 
 import dj_database_url
-import django_on_heroku
 import sentry_sdk
 from decouple import config
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -101,5 +100,3 @@ STATIC_URL = "/static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ORGANIZATION_NAME = config("ORGANIZATION_NAME")
-
-django_on_heroku.settings(locals(), databases=False)
