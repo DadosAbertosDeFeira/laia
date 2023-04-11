@@ -27,7 +27,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install poetry
+        pip install poetry==1.4.1
         poetry --version
         poetry config virtualenvs.create false
         poetry install -vv

@@ -1,10 +1,19 @@
+import os
 from pathlib import Path
 
 import dj_database_url
 import django_on_heroku
+import sentry_sdk
 from decouple import config
+from sentry_sdk.integrations.django import DjangoIntegration
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+sentry_sdk.init(
+    dsn=os.getenv("SENTRY_DSN"),
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+)
 
 SECRET_KEY = config("SECRET_KEY")
 
@@ -93,4 +102,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ORGANIZATION_NAME = config("ORGANIZATION_NAME")
 
-django_on_heroku.settings(locals())
+django_on_heroku.settings(locals(), databases=False)
