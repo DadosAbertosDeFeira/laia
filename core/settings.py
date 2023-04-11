@@ -102,4 +102,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ORGANIZATION_NAME = config("ORGANIZATION_NAME")
 
-django_on_heroku.settings(locals())
+django_on_heroku.settings(locals(), databases=False)
