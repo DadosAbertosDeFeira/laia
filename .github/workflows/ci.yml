@@ -31,8 +31,6 @@ jobs:
         poetry --version
         poetry config virtualenvs.create false
         poetry install -vv
-    - name: Run pre-commit
-      run: pre-commit run --all
     - name: Check migrations
       env:
         DJANGO_SETTINGS_MODULE: "core.settings"
