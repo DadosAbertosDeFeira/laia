@@ -14,6 +14,7 @@ class InformationRequestMixin(admin.ModelAdmin):
         "replied_at",
         "days_without_reply",
     )
+    search_fields = ("title", "text", "reply")
 
     def days_without_reply(self, information_request):
         return information_request.days_without_reply
@@ -21,34 +22,7 @@ class InformationRequestMixin(admin.ModelAdmin):
     days_without_reply.short_description = "Dias sem resposta"
 
 
-class PublicRequestModelAdmin(InformationRequestMixin, admin.ModelAdmin):
-    list_filter = (
-        "status",
-        "public_agency__sphere",
-    )
-
-
-class RequestPublicAdminSite(PublicAdminSite):
-    organization = (
-        f" - {settings.ORGANIZATION_NAME}" if settings.ORGANIZATION_NAME else ""
-    )
-    site_title = f"Pedidos de Informação {organization}"
-    site_header = f"Pedidos de Informação {organization}"
-    index_title = "Dashboard"
-
-
-@admin.register(InformationRequest)
-class InformationRequestModelAdmin(InformationRequestMixin, admin.ModelAdmin):
-    pass
-
-
-@admin.register(PublicAgency)
-class BodyModelAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(Complaint)
-class ComplaintModelAdmin(admin.ModelAdmin):
+class ComplaintMixin(admin.ModelAdmin):
     list_display = (
         "title",
         "public_agency",
@@ -69,12 +43,48 @@ class ComplaintModelAdmin(admin.ModelAdmin):
     request_and_body.short_description = "Pedido"
 
 
+class PublicInformationRequestModelAdmin(InformationRequestMixin, admin.ModelAdmin):
+    exclude = ("maintainer",)
+    list_filter = (
+        "status",
+        "public_agency__sphere",
+    )
+
+
+class RequestPublicAdminSite(PublicAdminSite):
+    organization = (
+        f" - {settings.ORGANIZATION_NAME}" if settings.ORGANIZATION_NAME else ""
+    )
+    site_title = f"Pedidos de Informação {organization}"
+    site_header = f"Pedidos de Informação {organization}"
+    index_title = "Dashboard"
+
+
+class PublicComplaintModelAdmin(ComplaintMixin):
+    exclude = ("maintainer",)
+
+
+@admin.register(InformationRequest)
+class InformationRequestModelAdmin(InformationRequestMixin, admin.ModelAdmin):
+    pass
+
+
+@admin.register(PublicAgency)
+class PublicAgencyAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Complaint)
+class ComplaintModelAdmin(ComplaintMixin):
+    pass
+
+
 public_app = PublicApp(
     "information_requests", models=("informationrequest", "complaint")
 )
 public_admin = RequestPublicAdminSite(public_apps=public_app)
-public_admin.register(InformationRequest, PublicRequestModelAdmin)
-public_admin.register(Complaint, ComplaintModelAdmin)
+public_admin.register(InformationRequest, PublicInformationRequestModelAdmin)
+public_admin.register(Complaint, PublicComplaintModelAdmin)
 organization = f" - {settings.ORGANIZATION_NAME}" if settings.ORGANIZATION_NAME else ""
 admin.site.site_title = f"Administração {organization}"
 admin.site.site_header = f"Administração {organization}"
