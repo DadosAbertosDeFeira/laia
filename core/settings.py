@@ -3,7 +3,7 @@ from pathlib import Path
 
 import dj_database_url
 import sentry_sdk
-from decouple import config
+from decouple import Csv, config
 from sentry_sdk.integrations.django import DjangoIntegration
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,7 +19,7 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = config(
-    "ALLOWED_HOSTS", default=["localhost", "127.0.0.1", "[::1]", "0.0.0.0"], cast=list
+    "ALLOWED_HOSTS", default=["localhost", "127.0.0.1", "[::1]", "0.0.0.0"], cast=Csv()
 )
 
 INSTALLED_APPS = [
