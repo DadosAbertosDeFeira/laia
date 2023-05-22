@@ -75,3 +75,21 @@ make run
 ```
 
 Acesse [localhost:8000](http://localhost:8000).
+
+## Deploy
+
+Atualmente estamos fazendo o deploy manual dessa aplicação.
+Para isso, precisamos fazer o pull do código e reiniciar
+a aplicação para que ela seja atualizada.
+
+Para preparar o código para atualização é preciso que você:
+
+* Atualize as dependências:
+
+```bash
+poetry export --without-hashes --format=requirements.txt > requirements.txt
+```
+
+* Atualize as variáveis de ambiente no `.env` do servidor
+
+* Reinicie o serviço
