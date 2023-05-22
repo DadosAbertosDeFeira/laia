@@ -1,5 +1,6 @@
 from datetime import date
 
+from django.contrib.auth.models import User
 from django.db import models
 
 STATUS_OPTIONS = (
@@ -37,6 +38,9 @@ class CreatedUpdatedAtMixin(models.Model):
 
 
 class InformationRequest(CreatedUpdatedAtMixin, models.Model):
+    maintainer = models.ForeignKey(
+        User, verbose_name="Usuário", on_delete=models.PROTECT, null=True
+    )
     num_protocol = models.CharField("Número de Protocolo", max_length=25, blank=True)
     sent_at = models.DateField("Data de envio", db_index=True)
     replied_at = models.DateField(
@@ -91,6 +95,9 @@ class PublicAgency(CreatedUpdatedAtMixin, models.Model):
 
 
 class Complaint(CreatedUpdatedAtMixin, models.Model):
+    maintainer = models.ForeignKey(
+        User, verbose_name="Usuário", on_delete=models.PROTECT, null=True
+    )
     information_request = models.ForeignKey(
         "InformationRequest", verbose_name="Pedido", on_delete=models.PROTECT
     )
